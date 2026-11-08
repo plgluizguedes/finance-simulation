@@ -17,8 +17,8 @@ Programa local que simula duas carteiras virtuais de ações da B3 (A: arrojada,
 | Etapa | Situação |
 |-------|----------|
 | Fase 0: fontes e decisões (`docs/DATA_SOURCES.md`, `docs/DECISIONS.md`) | concluída |
-| Núcleo: config, banco, calendário, coletores, ajuste | pendente |
-| Simulação, regras, contabilidade, métricas | pendente |
+| Núcleo: config, banco, calendário, coletores, ajuste | código pronto e testado por fumaça; testes automatizados pendentes |
+| Simulação, regras, contabilidade | `rules/engine.py` e `simulation/broker.py` prontos e testados por fumaça (execução D+1, stops, proventos, mark-to-market); métricas e testes automatizados pendentes |
 | Radar, escalonamento, agente mock, memória, agendador | pendente |
 | Carteiras iniciais e seeds MOCK | pendente |
 | API e dashboard (14 abas) | pendente |
@@ -40,3 +40,5 @@ Programa local que simula duas carteiras virtuais de ações da B3 (A: arrojada,
 
 ## Registro
 - 08/11/2026: fontes testadas, decisões D1 a D13 escritas.
+- 08/11/2026: config, banco (schema.sql), calendário, coletores (cotahist, bcb, cvm, brapi, mock), ajuste de preços, regras e corretora virtual escritos.
+  Próximos: `portfolio/metrics.py`, radar, escalonamento, agente mock, memória, agendador, seeds, API, CLI, dashboard, testes.

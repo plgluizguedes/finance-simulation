@@ -1,0 +1,13 @@
+# Orçamentos globais. Os máximos por perfil (escalonamentos e IA por dia) ficam em profiles.yaml.
+# Valores iniciais conservadores. O sistema nunca estoura um orçamento em silêncio: o que não couber
+# é adiado e registrado como "adiado por orçamento", com aviso no dashboard.
+
+brapi:
+  cota_mensal: 15000          # plano gratuito segundo o desenho do projeto; NÃO confirmado na documentação da brapi
+  fracao_maxima: 0.60         # no máximo 60% da cota mensal
+  requisicoes_por_escalonamento: 3   # teto de chamadas de pesquisa dirigida por escalonamento
+
+prioridade:
+  # Quando o orçamento é curto: ativos em carteira antes da watchlist, severidade crítica antes de atenção.
+  ordem_severidade: [CRITICO, ATENCAO]
+  carteira_antes_da_watchlist: true

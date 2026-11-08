@@ -1,0 +1,6 @@
+# Ajustes manuais do calendário de pregões da B3 (status: A_CONFERIR).
+# O calendário base é calculado por regra (feriados fixos, Carnaval, Sexta-feira Santa, Corpus Christi,
+# 24 e 31 de dezembro). Se a B3 abrir ou fechar em um dia diferente, liste a data aqui (AAAA-MM-DD).
+
+fechados: []     # dias úteis em que NÃO há pregão, mas o calendário base acha que há
+abertos: []      # dias que o calendário base marca como fechado, mas a B3 abriu

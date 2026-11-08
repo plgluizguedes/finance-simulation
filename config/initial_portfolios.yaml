@@ -1,0 +1,67 @@
+# Carteiras iniciais, decididas por mim (Claude) na construção, por instrução do dono do projeto.
+#
+# O que isto é: um Registro de Decisão com origem "agente" e agente "claude-construcao".
+# O que isto NÃO é: recomendação de investimento, nem decisão baseada em cotações ao vivo.
+# Base: conhecimento geral até meados de 2026 e o cenário de juros altos (Selic em 13,75% ao ano; CDI diário de
+# 0,050788%, conferido na API do Banco Central em 08/11/2026). Nenhum preço, múltiplo ou resultado de empresa foi consultado.
+#
+# As ordens são por PESO-ALVO e são dimensionadas no preço real de abertura do primeiro pregão seguinte,
+# passando pelo módulo de regras (limites por posição, setor, caixa mínimo, liquidez).
+
+decisao_inicial:
+  agente: claude-construcao
+  data_decisao: "2026-11-08"
+
+perfis:
+  A:
+    leitura_de_mercado: >
+      Juros altos favorecem renda fixa e punem empresas endividadas e de ciclo curto. A carteira concentra em
+      exportadoras e em líderes com geração de caixa, evitando varejo endividado. É uma leitura geral, sem dados ao vivo.
+    confianca: {valor: 0.40, justificativa: "Decisão sem cotações nem balanços atuais; a confiança é baixa de propósito."}
+    riscos: [
+      "Queda forte do petróleo ou do minério de ferro.",
+      "Interferência política em estatais e em regras de dividendos.",
+      "Juros ficarem altos por mais tempo e comprimirem múltiplos.",
+      "Escolha feita sem dados ao vivo: preços e notícias do dia da execução podem contradizer a tese."
+    ]
+    posicoes:
+      - {ticker: PETR4,  peso_pct: 13, alvo_pct: 22, tese: "Geração de caixa e dividendos elevados; exposição ao petróleo funciona como proteção cambial. Risco: política de preços e de dividendos."}
+      - {ticker: PRIO3,  peso_pct: 13, alvo_pct: 25, tese: "Petrolífera privada com crescimento de produção e custo por barril baixo. Risco: preço do petróleo e execução."}
+      - {ticker: VALE3,  peso_pct: 12, alvo_pct: 22, tese: "Minério de ferro com custo baixo e receita em dólar. Risco: demanda chinesa e eventos operacionais."}
+      - {ticker: SUZB3,  peso_pct: 10, alvo_pct: 22, tese: "Celulose com custo baixo e receita em dólar. Risco: preço da celulose e câmbio."}
+      - {ticker: ITUB4,  peso_pct: 12, alvo_pct: 18, tese: "Banco de maior qualidade de carteira e retorno sobre patrimônio consistente. Risco: inadimplência e crédito."}
+      - {ticker: BPAC11, peso_pct: 10, alvo_pct: 22, tese: "Banco de investimento com receitas diversificadas. Risco: mercado de capitais fraco e alavancagem."}
+      - {ticker: WEGE3,  peso_pct: 11, alvo_pct: 22, tese: "Líder industrial com exposição global e histórico de execução. Risco: valuation exigente e câmbio."}
+      - {ticker: RENT3,  peso_pct: 9,  alvo_pct: 22, tese: "Líder em locação de carros, sensível à queda dos juros. Risco: custo de capital e preço de usados."}
+    gatilhos:
+      - {descricao: "Revisar a tese se o petróleo cair de forma sustentada e PETR4 e PRIO3 fecharem 10% abaixo do preço de entrada.", tipo: queda_desde_entrada_pct, valor: 10, tickers: [PETR4, PRIO3], acao: reduzir, fracao: 0.5}
+
+  B:
+    leitura_de_mercado: >
+      Com juros altos, a renda fixa compete com ações; por isso a carteira prefere empresas de caixa previsível,
+      dividendos recorrentes e baixa alavancagem, com diversificação entre setores defensivos e alguns de qualidade.
+      É uma leitura geral, sem dados ao vivo.
+    confianca: {valor: 0.45, justificativa: "Perfil defensivo e diversificado reduz o erro de escolha individual, mas a decisão foi feita sem dados ao vivo."}
+    riscos: [
+      "Alta adicional dos juros reduz o valor de ações de dividendos.",
+      "Risco regulatório em energia e saneamento.",
+      "Concentração financeira próxima do teto do perfil.",
+      "Escolha feita sem dados ao vivo: preços e notícias do dia da execução podem contradizer a tese."
+    ]
+    posicoes:
+      - {ticker: ITUB4,  peso_pct: 8, alvo_pct: 45, tese: "Banco de maior qualidade e dividendos regulares."}
+      - {ticker: WEGE3,  peso_pct: 8, alvo_pct: 45, tese: "Líder industrial, crescimento consistente, baixa alavancagem."}
+      - {ticker: EGIE3,  peso_pct: 7, alvo_pct: 40, tese: "Geradora com contratos de longo prazo e dividendos previsíveis."}
+      - {ticker: SBSP3,  peso_pct: 7, alvo_pct: 45, tese: "Saneamento com contrato regulado e expansão de investimentos."}
+      - {ticker: TAEE11, peso_pct: 6, alvo_pct: 40, tese: "Transmissão de energia com receita regulada e indexada à inflação."}
+      - {ticker: BBSE3,  peso_pct: 6, alvo_pct: 40, tese: "Seguridade com alta distribuição de lucros."}
+      - {ticker: VIVT3,  peso_pct: 6, alvo_pct: 40, tese: "Telecomunicações com geração de caixa estável."}
+      - {ticker: RADL3,  peso_pct: 6, alvo_pct: 45, tese: "Varejo farmacêutico defensivo com expansão de lojas."}
+      - {ticker: RDOR3,  peso_pct: 6, alvo_pct: 45, tese: "Hospitais com crescimento e demanda estruturalmente estável."}
+      - {ticker: VALE3,  peso_pct: 6, alvo_pct: 40, tese: "Receita em dólar e geração de caixa; diversifica o risco doméstico."}
+      - {ticker: PSSA3,  peso_pct: 5, alvo_pct: 40, tese: "Seguradora com resultado financeiro favorecido por juros altos."}
+      - {ticker: B3SA3,  peso_pct: 5, alvo_pct: 45, tese: "Infraestrutura de mercado com receita recorrente e alta margem."}
+      - {ticker: ABEV3,  peso_pct: 5, alvo_pct: 35, tese: "Bebidas com fluxo de caixa defensivo."}
+      - {ticker: EQTL3,  peso_pct: 5, alvo_pct: 40, tese: "Distribuição de energia com contratos regulados e ganhos de eficiência."}
+    gatilhos:
+      - {descricao: "Rever a tese de uma posição que fechar 12% abaixo do preço de entrada.", tipo: queda_desde_entrada_pct, valor: 12, tickers: [], acao: reduzir, fracao: 0.5}

@@ -1,0 +1,39 @@
+[project]
+name = "carteiras-b3"
+version = "0.1.0"
+description = "Simulador de duas carteiras virtuais de ações da B3, com radar de alertas e dashboard."
+requires-python = ">=3.11"
+dependencies = [
+  "starlette>=0.40",
+  "uvicorn>=0.30",
+  "sse-starlette>=2.0",
+  "pydantic>=2.6",
+  "PyYAML>=6.0",
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "mypy>=1.10", "types-PyYAML", "types-requests", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+include = ["carteiras*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_ignores = true
+check_untyped_defs = true
+no_implicit_optional = true
+packages = ["carteiras"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

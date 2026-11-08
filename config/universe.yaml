@@ -1,0 +1,56 @@
+# Universo de ativos e classificação por setor (definidos por mim, Claude, na construção).
+#
+# Aviso: os tickers foram escolhidos de memória, sem consulta a cotações ao vivo. Na primeira coleta real,
+# cada ticker passa pelo filtro de liquidez do perfil; quem não passar, ou não existir mais, é excluído e registrado.
+# O campo "cvm" lista trechos do nome do emissor (sem acento, maiúsculas) para ligar o ticker aos documentos da CVM.
+# Esse mapeamento NÃO foi validado contra dados reais.
+
+indice:
+  codigo: IBOV
+  nome: Ibovespa
+  simbolo_brapi: "^BVSP"
+
+ativos:
+  PETR4:  {nome: "Petrobras PN",           setor: "Petróleo e Gás",            cvm: ["PETROLEO BRASILEIRO"]}
+  PRIO3:  {nome: "PRIO ON",                setor: "Petróleo e Gás",            cvm: ["PRIO S.A"]}
+  CSAN3:  {nome: "Cosan ON",               setor: "Petróleo e Gás",            cvm: ["COSAN S.A"]}
+  VALE3:  {nome: "Vale ON",                setor: "Mineração e Siderurgia",    cvm: ["VALE S.A"]}
+  GGBR4:  {nome: "Gerdau PN",              setor: "Mineração e Siderurgia",    cvm: ["GERDAU S.A"]}
+  CSNA3:  {nome: "CSN ON",                 setor: "Mineração e Siderurgia",    cvm: ["SIDERURGICA NACIONAL"]}
+  SUZB3:  {nome: "Suzano ON",              setor: "Papel e Celulose",          cvm: ["SUZANO S.A"]}
+  KLBN11: {nome: "Klabin UNT",             setor: "Papel e Celulose",          cvm: ["KLABIN S.A"]}
+  ITUB4:  {nome: "Itaú Unibanco PN",       setor: "Financeiro",                cvm: ["ITAU UNIBANCO HOLDING"]}
+  BBDC4:  {nome: "Bradesco PN",            setor: "Financeiro",                cvm: ["BRADESCO"]}
+  BBAS3:  {nome: "Banco do Brasil ON",     setor: "Financeiro",                cvm: ["BCO BRASIL S.A", "BANCO DO BRASIL S.A"]}
+  BPAC11: {nome: "BTG Pactual UNT",        setor: "Financeiro",                cvm: ["BANCO BTG PACTUAL"]}
+  B3SA3:  {nome: "B3 ON",                  setor: "Financeiro",                cvm: ["B3 S.A"]}
+  BBSE3:  {nome: "BB Seguridade ON",       setor: "Financeiro",                cvm: ["BB SEGURIDADE"]}
+  CXSE3:  {nome: "Caixa Seguridade ON",    setor: "Financeiro",                cvm: ["CAIXA SEGURIDADE"]}
+  PSSA3:  {nome: "Porto Seguro ON",        setor: "Financeiro",                cvm: ["PORTO SEGURO"]}
+  WEGE3:  {nome: "WEG ON",                 setor: "Bens de Capital",           cvm: ["WEG S.A"]}
+  EMBR3:  {nome: "Embraer ON",             setor: "Bens de Capital",           cvm: ["EMBRAER"]}
+  RENT3:  {nome: "Localiza ON",            setor: "Transporte e Logística",    cvm: ["LOCALIZA"]}
+  RAIL3:  {nome: "Rumo ON",                setor: "Transporte e Logística",    cvm: ["RUMO S.A"]}
+  LREN3:  {nome: "Lojas Renner ON",        setor: "Consumo e Varejo",          cvm: ["LOJAS RENNER"]}
+  RADL3:  {nome: "RaiaDrogasil ON",        setor: "Consumo e Varejo",          cvm: ["RAIA DROGASIL"]}
+  ABEV3:  {nome: "Ambev ON",               setor: "Alimentos e Bebidas",       cvm: ["AMBEV S.A"]}
+  JBSS3:  {nome: "JBS ON",                 setor: "Alimentos e Bebidas",       cvm: ["JBS S.A"]}
+  EGIE3:  {nome: "Engie Brasil ON",        setor: "Energia Elétrica",          cvm: ["ENGIE BRASIL ENERGIA"]}
+  TAEE11: {nome: "Taesa UNT",              setor: "Energia Elétrica",          cvm: ["TRANSMISSORA ALIANCA"]}
+  ISAE4:  {nome: "ISA Energia PN",         setor: "Energia Elétrica",          cvm: ["ISA ENERGIA BRASIL"]}
+  CPLE6:  {nome: "Copel PNB",              setor: "Energia Elétrica",          cvm: ["PARANAENSE DE ENERGIA"]}
+  EQTL3:  {nome: "Equatorial ON",          setor: "Energia Elétrica",          cvm: ["EQUATORIAL"]}
+  SBSP3:  {nome: "Sabesp ON",              setor: "Saneamento",                cvm: ["SANEAMENTO BASICO DO ESTADO DE SAO PAULO"]}
+  VIVT3:  {nome: "Vivo ON",                setor: "Telecomunicações",          cvm: ["TELEFONICA BRASIL"]}
+  TIMS3:  {nome: "TIM ON",                 setor: "Telecomunicações",          cvm: ["TIM S.A"]}
+  RDOR3:  {nome: "Rede D'Or ON",           setor: "Saúde",                     cvm: ["REDE D OR"]}
+  TOTS3:  {nome: "Totvs ON",               setor: "Tecnologia",                cvm: ["TOTVS"]}
+  MULT3:  {nome: "Multiplan ON",           setor: "Shoppings",                 cvm: ["MULTIPLAN"]}
+
+perfis:
+  A:
+    tickers: [PETR4, PRIO3, CSAN3, VALE3, GGBR4, CSNA3, SUZB3, ITUB4, BBDC4, BBAS3, BPAC11, B3SA3,
+              WEGE3, EMBR3, RENT3, RAIL3, LREN3, RADL3, ABEV3, JBSS3, EQTL3, TOTS3]
+  B:
+    tickers: [ITUB4, BPAC11, BBSE3, CXSE3, PSSA3, B3SA3, WEGE3, EGIE3, TAEE11, ISAE4, CPLE6, SBSP3, EQTL3,
+              VIVT3, TIMS3, ABEV3, RADL3, RDOR3, VALE3, PETR4, SUZB3, KLBN11, TOTS3, RENT3, LREN3, MULT3, RAIL3]

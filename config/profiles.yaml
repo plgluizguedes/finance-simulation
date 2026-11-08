@@ -1,0 +1,130 @@
+# Perfis das duas carteiras. Todos os números do sistema vêm daqui; o código não tem valor de perfil fixo.
+#
+# status_parametros: PROVISORIO  ->  o dashboard mostra o selo "PERFIL PROVISÓRIO".
+# Os limites, o radar e o orçamento partem dos valores provisórios do desenho do projeto.
+# Os campos marcados "(definido na construção)" foram preenchidos por mim, Claude, porque estavam em aberto.
+
+perfis:
+  - id: A
+    nome: "Arrojada"
+    status_parametros: PROVISORIO
+    descricao: "Médio/curto prazo, maior tolerância a risco, maior giro."
+    horizonte: {min_dias: 5, max_dias: 90}
+    capital_inicial: 100000
+    benchmarks: [IBOV, CDI]
+    universo:
+      origem: universe.yaml                 # lista de tickers em config/universe.yaml (definido na construção)
+      liquidez_minima:
+        volume_financeiro_medio_20d: 20000000   # BRL por dia (definido na construção)
+    limites:
+      posicoes_min: 5
+      posicoes_max: 10
+      max_por_posicao_pct: 15
+      max_por_setor_pct: 35
+      caixa_minimo_pct: 5
+      stop_padrao_pct: 8
+      drawdown_max_carteira_pct: 20       # ao atingir: modo "somente reduzir"
+      drawdown_retomada_pct: 12           # sai do modo somente reduzir quando o drawdown cai abaixo disto (definido na construção)
+      giro_max_mensal_pct: 150
+    execucao:
+      momento: abertura_d_mais_1          # abertura_d_mais_1 | fechamento_d_mais_1
+      slippage_pct: 0.15
+      corretagem_brl: 0
+      emolumentos_pct: 0.0050             # A_CONFERIR na B3; valor conservador
+      liquidacao_pct: 0.0275              # A_CONFERIR na B3; valor conservador
+      tick_brl: 0.01
+    radar:
+      janela_volume_dias: 20
+      janela_atr_dias: 14
+      janela_variacao_dias: 5
+      janela_rompimento_curta_dias: 20
+      janela_rompimento_longa_dias: 252
+      mult_critico: 1.5                   # severidade crítica = limiar de atenção x este fator, quando não há limiar crítico próprio
+      variacao_diaria_atencao_pct: 4
+      variacao_diaria_critico_pct: 8
+      variacao_janela_atencao_pct: 8
+      volume_relativo_atencao: 2.0
+      volume_relativo_critico: 3.5
+      gap_abertura_atencao_pct: 3
+      range_vs_atr_atencao: 2.0
+      queda_vs_ibov_atencao_pct: 3
+      proximidade_stop_atencao_pct: 2
+      proximidade_alvo_atencao_pct: 2
+      drawdown_posicao_atencao_pct: 8
+      drawdown_carteira_atencao_pct: 10
+      ibov_variacao_critica_pct: 3
+      mercado_queda_forte_pct: 3
+      mercado_fracao_universo_pct: 60
+      salto_sem_evento_pct: 20
+      dias_para_data_com_atencao: 3
+      defasagem_max_pregoes: 2
+      cooldown_pregoes: 2
+    revisao:
+      rotina_a_cada_pregoes: 2
+      rebalanceamento: desvio_de_peso_maior_que_5pp    # definido na construção
+    orcamento:
+      escalonamentos_max_por_dia: 4
+      chamadas_ia_max_por_dia: 6
+      tokens_ia_max_por_dia: 60000        # reserva para a etapa futura (definido na construção)
+
+  - id: B
+    nome: "Conservadora-Arrojada"
+    status_parametros: PROVISORIO
+    descricao: "Médio/longo prazo, risco moderado, diversificada, giro baixo."
+    horizonte: {min_dias: 90, max_dias: 1095}
+    capital_inicial: 100000
+    benchmarks: [IBOV, CDI]
+    universo:
+      origem: universe.yaml
+      liquidez_minima:
+        volume_financeiro_medio_20d: 10000000
+    limites:
+      posicoes_min: 10
+      posicoes_max: 20
+      max_por_posicao_pct: 8
+      max_por_setor_pct: 25
+      caixa_minimo_pct: 10
+      stop_padrao_pct: 15
+      drawdown_max_carteira_pct: 15
+      drawdown_retomada_pct: 9
+      giro_max_mensal_pct: 30
+    execucao:
+      momento: abertura_d_mais_1
+      slippage_pct: 0.10
+      corretagem_brl: 0
+      emolumentos_pct: 0.0050
+      liquidacao_pct: 0.0275
+      tick_brl: 0.01
+    radar:
+      janela_volume_dias: 20
+      janela_atr_dias: 14
+      janela_variacao_dias: 5
+      janela_rompimento_curta_dias: 20
+      janela_rompimento_longa_dias: 252
+      mult_critico: 1.5
+      variacao_diaria_atencao_pct: 6
+      variacao_diaria_critico_pct: 12
+      variacao_janela_atencao_pct: 12
+      volume_relativo_atencao: 2.5
+      volume_relativo_critico: 4.0
+      gap_abertura_atencao_pct: 5
+      range_vs_atr_atencao: 2.5
+      queda_vs_ibov_atencao_pct: 5
+      proximidade_stop_atencao_pct: 3
+      proximidade_alvo_atencao_pct: 3
+      drawdown_posicao_atencao_pct: 12
+      drawdown_carteira_atencao_pct: 8
+      ibov_variacao_critica_pct: 3
+      mercado_queda_forte_pct: 3
+      mercado_fracao_universo_pct: 60
+      salto_sem_evento_pct: 20
+      dias_para_data_com_atencao: 3
+      defasagem_max_pregoes: 2
+      cooldown_pregoes: 3
+    revisao:
+      rotina_a_cada_pregoes: 5
+      rebalanceamento: desvio_de_peso_maior_que_3pp
+    orcamento:
+      escalonamentos_max_por_dia: 2
+      chamadas_ia_max_por_dia: 3
+      tokens_ia_max_por_dia: 30000
