@@ -1,0 +1,32 @@
+# Segredos: nunca versionar
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dados locais (bancos, arquivos baixados, backups)
+data/*
+!data/.gitkeep
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+
+# Frontend
+node_modules/
+dashboard/dist/
+
+# Sistema
+.DS_Store
+*.log
