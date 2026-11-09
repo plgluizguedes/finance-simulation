@@ -20,8 +20,8 @@ Programa local que simula duas carteiras virtuais de ações da B3 (A: arrojada,
 | Núcleo: config, banco, calendário, coletores, ajuste | código pronto e testado por fumaça; testes automatizados pendentes |
 | Simulação, regras, contabilidade | `rules/engine.py`, `simulation/broker.py` e `portfolio/metrics.py` prontos; testados por fumaça (execução D+1, stops, proventos, marcação a mercado, conciliação do patrimônio); testes automatizados pendentes |
 | Radar, escalonamento, agente mock, memória, agendador | prontos e rodando de ponta a ponta com dados MOCK (70 pregões, 2 carteiras, reexecução sem duplicar); testes automatizados pendentes |
-| Carteiras iniciais e seeds MOCK | carteiras iniciais prontas (`seeds/initial.py`); seeds MOCK de lições/calibração e CLI pendentes |
-| API e dashboard (14 abas) | pendente |
+| Carteiras iniciais e seeds MOCK | prontos (`seeds/initial.py`, `seeds/mock_memory.py`); CLI `python -m carteiras` pronta (init, seed-mock, run, collect, import-inbox, status, serve) |
+| API e dashboard (14 abas) | API Starlette pronta e testada em todas as rotas (`backend/carteiras/api/`); dashboard (`dashboard/`) pendente: ainda vazio |
 | Testes, README e conferência final | pendente |
 
 ## Decisões que mudam o desenho (detalhe em `docs/DECISIONS.md`)
@@ -42,4 +42,5 @@ Programa local que simula duas carteiras virtuais de ações da B3 (A: arrojada,
 - 08/11/2026: fontes testadas, decisões D1 a D13 escritas.
 - 08/11/2026: config, banco (schema.sql), calendário, coletores (cotahist, bcb, cvm, brapi, mock), ajuste de preços, regras e corretora virtual escritos.
 - 09/11/2026: `portfolio/metrics.py`, radar (`radar/`), escalonamento e dossiê (`escalation/`), agente (`agent/`: schema, MockAgent, ManualAgent, aplicação em ordens), memória e gatilhos (`memory/`), coleta real (`collector/pipeline.py`), carteiras iniciais (`seeds/initial.py`) e agendador (`scheduler/runner.py`) escritos. Rodada MOCK completa: 142 sessões processadas, patrimônio concilia com caixa + posições, caixa nunca negativo, reexecução sem duplicar.
-  Próximos: seeds MOCK de memória, CLI (`python -m carteiras`), API Starlette, dashboard, testes pytest, README, D14 e D15 em `docs/DECISIONS.md`.
+- 09/11/2026: CLI, bootstrap, sementes MOCK de memória e API (leitura de todas as abas, controles com cabeçalho `X-Carteiras`, SSE, TrustedHost) prontos. O dashboard foi delegado a um subagente que caiu duas vezes por limite de uso sem criar arquivos; `dashboard/` segue vazio.
+  Próximos: dashboard (React + esbuild, 14 abas, ver especificação em `docs/` do desenho e rotas em `backend/carteiras/api/`), testes pytest, README, `docs/API.md`, D14 e D15 em `docs/DECISIONS.md`.
