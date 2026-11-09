@@ -24,7 +24,7 @@ class RuleContext:
     is_trading_day: bool
     prices: dict[str, float]              # preço de referência por ticker (fechamento anterior ou preço de execução)
     avg_volume_20d: dict[str, float]      # volume financeiro médio de 20 dias por ticker; ausente = sem dado
-    turnover_month_brl: float             # compras + vendas já feitas no mês corrente
+    turnover_month_brl: float             # compras já feitas no mês corrente, sem a construção inicial
     somente_reduzir: bool
     exec_price: float | None = None       # preço de execução, quando já conhecido (inclui slippage)
     cost_rate: float = 0.0                # custo proporcional (emolumentos + liquidação) em fração
