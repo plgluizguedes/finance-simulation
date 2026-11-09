@@ -18,9 +18,9 @@ Programa local que simula duas carteiras virtuais de ações da B3 (A: arrojada,
 |-------|----------|
 | Fase 0: fontes e decisões (`docs/DATA_SOURCES.md`, `docs/DECISIONS.md`) | concluída |
 | Núcleo: config, banco, calendário, coletores, ajuste | código pronto e testado por fumaça; testes automatizados pendentes |
-| Simulação, regras, contabilidade | `rules/engine.py` e `simulation/broker.py` prontos e testados por fumaça (execução D+1, stops, proventos, mark-to-market); métricas e testes automatizados pendentes |
-| Radar, escalonamento, agente mock, memória, agendador | pendente |
-| Carteiras iniciais e seeds MOCK | pendente |
+| Simulação, regras, contabilidade | `rules/engine.py`, `simulation/broker.py` e `portfolio/metrics.py` prontos; testados por fumaça (execução D+1, stops, proventos, marcação a mercado, conciliação do patrimônio); testes automatizados pendentes |
+| Radar, escalonamento, agente mock, memória, agendador | prontos e rodando de ponta a ponta com dados MOCK (70 pregões, 2 carteiras, reexecução sem duplicar); testes automatizados pendentes |
+| Carteiras iniciais e seeds MOCK | carteiras iniciais prontas (`seeds/initial.py`); seeds MOCK de lições/calibração e CLI pendentes |
 | API e dashboard (14 abas) | pendente |
 | Testes, README e conferência final | pendente |
 
@@ -41,4 +41,5 @@ Programa local que simula duas carteiras virtuais de ações da B3 (A: arrojada,
 ## Registro
 - 08/11/2026: fontes testadas, decisões D1 a D13 escritas.
 - 08/11/2026: config, banco (schema.sql), calendário, coletores (cotahist, bcb, cvm, brapi, mock), ajuste de preços, regras e corretora virtual escritos.
-  Próximos: `portfolio/metrics.py`, radar, escalonamento, agente mock, memória, agendador, seeds, API, CLI, dashboard, testes.
+- 09/11/2026: `portfolio/metrics.py`, radar (`radar/`), escalonamento e dossiê (`escalation/`), agente (`agent/`: schema, MockAgent, ManualAgent, aplicação em ordens), memória e gatilhos (`memory/`), coleta real (`collector/pipeline.py`), carteiras iniciais (`seeds/initial.py`) e agendador (`scheduler/runner.py`) escritos. Rodada MOCK completa: 142 sessões processadas, patrimônio concilia com caixa + posições, caixa nunca negativo, reexecução sem duplicar.
+  Próximos: seeds MOCK de memória, CLI (`python -m carteiras`), API Starlette, dashboard, testes pytest, README, D14 e D15 em `docs/DECISIONS.md`.

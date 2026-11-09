@@ -47,6 +47,14 @@ def current_mode() -> str:
     return mode
 
 
+def mock_agent_executes_orders(mode: str | None = None) -> bool:
+    """Em modo mock, as ordens do MockAgent são simuladas. Em modo real, só com CARTEIRAS_MOCK_AGENT_ORDERS=1,
+    para que decisões de mentira não contaminem a simulação sobre dados reais (docs/DECISIONS.md, D15)."""
+    if (mode or current_mode()) == "mock":
+        return True
+    return os.environ.get("CARTEIRAS_MOCK_AGENT_ORDERS", "0").strip() == "1"
+
+
 def db_path(mode: str | None = None) -> Path:
     env = os.environ.get("CARTEIRAS_DB")
     if env:

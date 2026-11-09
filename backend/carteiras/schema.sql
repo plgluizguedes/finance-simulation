@@ -197,6 +197,7 @@ CREATE TABLE IF NOT EXISTS triggers (
   invalida_json TEXT,
   acao_json TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'PENDENTE',   -- PENDENTE | DISPARADO | INVALIDADO
+  criado_pregao TEXT NOT NULL DEFAULT '',    -- só é avaliado em pregões posteriores a este (sem look-ahead)
   ultima_avaliacao TEXT,
   ultima_avaliacao_json TEXT,
   disparado_em TEXT,
